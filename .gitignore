@@ -102,3 +102,6 @@ fabric.properties
 .idea/google-java-format.xml
 .idea/jarRepositories.xml
 .idea/vcs.xml
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/workspace.xml
