@@ -48,4 +48,18 @@ public class UserBusinessService {
         }
         return getUserEntity;
     }
+
+    public UserEntity deleteUser(String authorization, String userId) throws AuthorizationFailedException, UserNotFoundException {
+        UserEntity userEntity = authenticationService.validateAuthToken(authorization);
+        UserEntity userEntityDelete = new UserEntity();
+        if (userEntity != null && authenticationService.isAdmin(userEntity)) {
+            userEntityDelete = userDao.getUserById(userId);
+            if (userEntityDelete == null) {
+                throw new UserNotFoundException("USR-001", "User with entered uuid to be deleted does not exist");
+            }
+            userDao.deleteUser(userEntityDelete);
+        }
+        return userEntityDelete;
+
+    }
 }
