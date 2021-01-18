@@ -26,4 +26,11 @@ public class QuoraExceptionHandler {
         );
     }
 
+    @ExceptionHandler(SignOutRestrictedException.class)
+    public ResponseEntity<ErrorResponse> signOutRestrictedException(SignOutRestrictedException exception, WebRequest request) {
+        return new ResponseEntity<ErrorResponse>(
+                new ErrorResponse().code(exception.getCode()).message(exception.getErrorMessage()), HttpStatus.UNAUTHORIZED
+        );
+    }
+
 }
