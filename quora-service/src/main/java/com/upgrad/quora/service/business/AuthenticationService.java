@@ -72,4 +72,11 @@ public class AuthenticationService {
         }
     }
 
+    public boolean isAdmin(UserEntity userEntity) throws AuthorizationFailedException {
+        if (userEntity != null && userEntity.getRole().equals("nonadmin")) {
+            throw new AuthorizationFailedException("ATHR-003", "Unauthorized Access, Entered user is not an admin");
+        }
+        return true;
+    }
+
 }
