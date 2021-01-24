@@ -21,7 +21,7 @@ public class AnswerController {
 
     @Autowired
     private AnswerBusinessService answerBusinessService;
-
+    //Solves #15 (https://github.com/adarshrya/Trello_quora/issues/15)
     @RequestMapping(method = RequestMethod.POST, path = "/question/{questionId}/answer/create", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerResponse> createAnswer(@RequestHeader("authorization") final String authorization, @PathVariable("questionId") final String questionId, final AnswerRequest answerRequest) throws AuthorizationFailedException, InvalidQuestionException {
         AnswerResponse answerResponse = new AnswerResponse();
@@ -30,7 +30,7 @@ public class AnswerController {
         answerResponse.setStatus("ANSWER CREATED");
         return new ResponseEntity<AnswerResponse>(answerResponse, HttpStatus.CREATED);
     }
-
+    //Solves #16 (https://github.com/adarshrya/Trello_quora/issues/16)
     @RequestMapping(method = RequestMethod.PUT, path = "/answer/edit/{answerId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerEditResponse> editAnswerContent(@RequestHeader("authorization") final String authorization, @PathVariable("answerId") final String answerId, final AnswerEditRequest answerEditRequest ) throws AuthorizationFailedException, AnswerNotFoundException {
         AnswerEditResponse answerEditResponse = new AnswerEditResponse();
@@ -39,6 +39,7 @@ public class AnswerController {
         answerEditResponse.setStatus("ANSWER EDITED");
         return new ResponseEntity<AnswerEditResponse>(answerEditResponse, HttpStatus.OK);
     }
+    //Solves #17 (https://github.com/adarshrya/Trello_quora/issues/17)
     @RequestMapping(method = RequestMethod.DELETE, path = "/answer/delete/{answerId}",   produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerDeleteResponse> deleteAnswer(@RequestHeader("authorization") final String authorization, @PathVariable("answerId") final String answerId) throws AuthorizationFailedException, AnswerNotFoundException {
         AnswerDeleteResponse answerDeleteResponse = new AnswerDeleteResponse();
@@ -47,6 +48,7 @@ public class AnswerController {
         answerDeleteResponse.setStatus("ANSWER DELETED");
         return new ResponseEntity<AnswerDeleteResponse>(answerDeleteResponse, HttpStatus.OK);
     }
+    //Solves #18 (https://github.com/adarshrya/Trello_quora/issues/18)
     @RequestMapping(method = RequestMethod.GET, path = "/answer/all/{questionId}",  produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<AnswerDetailsResponse>> getAllAnswersToQuestion(@RequestHeader("authorization") final String authorization, @PathVariable("questionId") final String questionId ) throws AuthorizationFailedException, InvalidQuestionException {
         List<AnswerDetailsResponse> answerDetailsResponse = new ArrayList<AnswerDetailsResponse>();

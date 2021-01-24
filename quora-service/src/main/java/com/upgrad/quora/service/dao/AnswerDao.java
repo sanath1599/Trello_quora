@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
-
+//Solves #14 (https://github.com/adarshrya/Trello_quora/issues/14)
 @Repository
 public class AnswerDao {
     @PersistenceContext
