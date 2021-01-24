@@ -31,5 +31,12 @@ public class AnswerController {
         return new ResponseEntity<AnswerResponse>(answerResponse, HttpStatus.CREATED);
     }
 
-   
+    @RequestMapping(method = RequestMethod.PUT, path = "/answer/edit/{answerId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<AnswerEditResponse> editAnswerContent(@RequestHeader("authorization") final String authorization, @PathVariable("answerId") final String answerId, final AnswerEditRequest answerEditRequest ) throws AuthorizationFailedException, AnswerNotFoundException {
+        AnswerEditResponse answerEditResponse = new AnswerEditResponse();
+        AnswerEntity answerEntity = answerBusinessService.editAnswerContent(authorization,answerId,answerEditRequest.getContent());
+        answerEditResponse.setId(answerEntity.getUuid());
+        answerEditResponse.setStatus("ANSWER EDITED");
+        return new ResponseEntity<AnswerEditResponse>(answerEditResponse, HttpStatus.OK);
+    }
 }
